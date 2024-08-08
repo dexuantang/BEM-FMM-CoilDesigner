@@ -1,0 +1,27 @@
+function [ ] = display_CADmodel_GUI(parent, P, t, ind, alpha, beta, transparency, color)
+    %   Display CAD model
+    if nargin = =
+        transparency = 1;
+    end
+    if isempty(color)
+        color = [1 0.75 0.65];
+    end
+
+    set(parent,'Color','White');
+    p = patch(parent, 'vertices', P, 'faces', t, 'EdgeColor', 'none',...
+        'FaceColor', color, 'FaceAlpha', transparency);
+    if ~ ind
+        p.EdgeColor = 'none';
+    else
+        p.EdgeColor = 'k';
+    end
+    view(parent, alpha, beta)
+    axis(parent, 'equal');
+    axis(parent, 'tight'); 
+    lightangle(parent, alpha, beta);
+    lighting (parent, 'gouraud');
+    set(parent,'fontsize',20)
+    xlabel(parent,'X (m)');
+    ylabel(parent,'Y (m)');
+    zlabel(parent,'Z (m)');
+end

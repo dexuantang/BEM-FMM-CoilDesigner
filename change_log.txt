@@ -1,0 +1,90 @@
+5/8/2024
+Fixed 08_Coil_Designer_Example5_Modified\08_Coil_Designer_Example5\coil2_compute_fields_cond.m
+	Cause: Solver was calling bemf4_surface_field_electric_plain.m with 2 input arguements missing: contrast and perc. 
+	Fix: Used contrast = 1 and perc = 1e-4 
+5/11/2024
+Created a simple GUI that displays and compute the B, E fields, and inducatance of a helix coil given dimensional parameters.
+5/15/2024
+Stubs for placing multiple coils.
+5/20/24
+Improved twist correction with reference points.
+Added spiral preset.
+Added ring preset.
+5/26/24
+Added 3D plot options with either heatmaps or contour plots.
+Added tab layouts for the input panel.
+6/7/24
+Added results saving button
+6/8/24
+Added a function that zeros all values that are at locations below a threshold from a wire point to prevent singularity.
+6/11/24
+Added slice along axis options
+6/14
+Added centerline extraction functions
+6/17
+Added centerline extraction wizard
+Added vector display feature
+Added display box offset feature
+6/18
+Added coil array features (to-do: Mutual inductance UI)
+6/20
+Fixed graphical glitches when using extracted centerline (Caused by overlapping points after mesh contraction)
+6/21
+Added contourf slices that the user can scroll through with a slider.
+6/22
+Added CAD visualizer in output panels.
+6/26
+More contour levels and added labels.
+6/29
+Added 
+    -CAD overlay in centerline extractor
+    -Cross-sectional overlay for coil array
+    -Mutual inductance
+6/30
+Added
+    -Delete button for array
+Singularity check memory optimization
+7/2
+Toolbar with save and help buttons.
+7/3
+New centerline post-processing algorithm
+    Tested on extracting CB-60 coil
+7/6
+Re-ordered entries in the left panel
+7/7
+Updated array workflow
+7/8
+Added 
+    -output layer spinner
+    -Inductance matrix
+7/10
+Added user selectable and total component in contourf display
+7/12
+Added Cond. Sphere
+7/13
+Added 
+    - Magventure coil presets
+    - Status lamp to indicate app busy state
+7/17
+Fixed
+    - Thin sheet rectangular cross-section
+7/18
+Added
+    - B field display over sphere
+Fixed
+    - Font size
+    - Plot resizing
+    - CB-60 conductors overlapping
+7/19
+Added H1 coil preset
+7/23
+Added
+    - Labels displayed on top of coil in Canvas
+    - The ability to display vector components on the sphere
+    - Exit button
+Fixed
+    - Better camera positioning graphics
+    - Color bar disappearing
+7/24
+    - Display default current direction
+

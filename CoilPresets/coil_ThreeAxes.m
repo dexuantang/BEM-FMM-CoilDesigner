@@ -1,4 +1,4 @@
-function [strcoil] = coil_ThreeAxes(Xweight, Yweight, Zweight)
+function [strcoil, coilarray, arr_flag] = coil_ThreeAxes(Xweight, Yweight, Zweight)
     %   This function creates the mesh (both CAD surface mesh and a computational
     %   wire grid) for a three-axis coil aray coil with 1 A of total current
     %   The output is saved in the binary file coil.mat and includes:
@@ -21,7 +21,8 @@ function [strcoil] = coil_ThreeAxes(Xweight, Yweight, Zweight)
     N    = 64;          %   number of perimeter subdivisions
     flag = 1;           %   circular cross-section    
     sk   = 0;           %   uniform current distribution (Litz wire)
-    
+    coilarray = [];
+    arr_flag = 1;
     %--------------------------------------------------------------------------
     %   X-coil (X-component of the coil array)
     %   When crossing the xz-plane, the intersection points for the loop
@@ -42,7 +43,9 @@ function [strcoil] = coil_ThreeAxes(Xweight, Yweight, Zweight)
     z0  = [z01 z02]; 
             
     %   Construct the mesh for the coil
-    [PwireX, EwireX, SwireX, PX, tX, tindX] = meshcoil2(x0, x0, z0, M, N, a, a, flag, sk);        
+    [PwireX, EwireX, SwireX, PX, tX, tindX] = meshcoil(x0, x0, z0, M, N, a, a, flag, sk);  
+
+    
     
     %--------------------------------------------------------------------------
     %   Y-coil (Y-component of the coil array)
@@ -62,7 +65,9 @@ function [strcoil] = coil_ThreeAxes(Xweight, Yweight, Zweight)
     z0  = [z01 z02]; 
             
     %   Construct the mesh for the coil
-    [PwireY, EwireY, SwireY, PY, tY, tindY] = meshcoil2(x0, x0, z0, M, N, a, a, flag, sk);        
+    [PwireY, EwireY, SwireY, PY, tY, tindY] = meshcoil(x0, x0, z0, M, N, a, a, flag, sk);  
+
+    
     
     %--------------------------------------------------------------------------
     %   Z-coil (Z-component of the coil array)
@@ -76,9 +81,11 @@ function [strcoil] = coil_ThreeAxes(Xweight, Yweight, Zweight)
     z0(6:10)     = 0.9045e-3  + 2*a;
     z0(11:14)    = 0.9045e-3  + 4*a;
     z0(15:17)    = 0.9045e-3  + 6*a; 
-            
+    
     %   Construct the mesh for the coil
-    [PwireZ, EwireZ, SwireZ, PZ, tZ, tindZ] = meshcoil2(x0, x0, z0, M, N, a, a, flag, sk); 
+    [PwireZ, EwireZ, SwireZ, PZ, tZ, tindZ] = meshcoil(x0, x0, z0, M, N, a, a, flag, sk); 
+
+    
     
     %--------------------------------------------------------------------------
     %   Construct the entire coil aray as a combination of three parts
@@ -127,6 +134,37 @@ function [strcoil] = coil_ThreeAxes(Xweight, Yweight, Zweight)
 
     strcoil.P = P;
     strcoil.t = t;
+
+    %   Array model
+    strcoilX.Pwire       = PwireX;
+    strcoilX.Pwire(:, 3) = strcoilX.Pwire(:, 3);
+    strcoilX.Ewire       = EwireX;
+    strcoilX.Swire       = SwireX;
+    strcoilX.P           = PX;
+    strcoilX.P(:, 3)     = strcoilX.P(:, 3) - min(strcoilX.P(:, 3));
+    strcoilX.t           = tX;
+    strcoilX.label        = 'X';
+    coilarray = [coilarray;strcoilX];
+
+    strcoilY.Pwire       = PwireY;
+    strcoilY.Pwire(:, 3) = strcoilY.Pwire(:, 3) - min(strcoilY.Pwire(:, 3));
+    strcoilY.Ewire       = EwireY;
+    strcoilY.Swire       = SwireY;
+    strcoilY.P           = PY;
+    strcoilY.P(:, 3)     = strcoilY.P(:, 3) - min(strcoilY.P(:, 3));
+    strcoilY.t           = tY;
+    strcoilY.label        = 'Y';
+    coilarray = [coilarray;strcoilY];
+
+    strcoilZ.Pwire       = PwireZ;
+    strcoilZ.Pwire(:, 3) = strcoilZ.Pwire(:, 3) - min(strcoilZ.Pwire(:, 3));
+    strcoilZ.Ewire       = EwireZ;
+    strcoilZ.Swire       = SwireZ;
+    strcoilZ.P           = PZ;
+    strcoilZ.P(:, 3)     = strcoilZ.P(:, 3) - min(strcoilZ.P(:, 3));
+    strcoilZ.t           = tZ;
+    strcoilZ.label        = 'Z';
+    coilarray = [coilarray;strcoilZ];
      
     save('coil', 'strcoil');
     save('coilCAD', 'P', 't', 'tind');  %   optional, slow

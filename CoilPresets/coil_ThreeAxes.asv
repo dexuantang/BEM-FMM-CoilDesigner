@@ -44,6 +44,7 @@ function [strcoil, coilarray, arr_flag] = coil_ThreeAxes(Xweight, Yweight, Zweig
             
     %   Construct the mesh for the coil
     [PwireX, EwireX, SwireX, PX, tX, tindX] = meshcoil2(x0, x0, z0, M, N, a, a, flag, sk);  
+
     
     
     %--------------------------------------------------------------------------
@@ -66,6 +67,7 @@ function [strcoil, coilarray, arr_flag] = coil_ThreeAxes(Xweight, Yweight, Zweig
     %   Construct the mesh for the coil
     [PwireY, EwireY, SwireY, PY, tY, tindY] = meshcoil2(x0, x0, z0, M, N, a, a, flag, sk);  
 
+    
     
     %--------------------------------------------------------------------------
     %   Z-coil (Z-component of the coil array)
@@ -130,25 +132,31 @@ function [strcoil, coilarray, arr_flag] = coil_ThreeAxes(Xweight, Yweight, Zweig
 
     %   Array model
     strcoilX.Pwire       = PwireX;
+
     strcoilX.Ewire       = EwireX;
     strcoilX.Swire       = SwireX;
     strcoilX.P           = PX;
+    strcoilX.P(:, 3)     = strcoilX.P(:, 3) - min(strcoilX.P(:, 3));
     strcoilX.t           = tX;
     strcoilX.label        = 'X';
     coilarray = [coilarray;strcoilX];
 
     strcoilY.Pwire       = PwireY;
+    strcoilY.Pwire(:, 3) = strcoilY.Pwire(:, 3) - min(strcoilY.Pwire(:, 3));
     strcoilY.Ewire       = EwireY;
     strcoilY.Swire       = SwireY;
     strcoilY.P           = PY;
+    strcoilY.P(:, 3)     = strcoilY.P(:, 3) - min(strcoilY.P(:, 3));
     strcoilY.t           = tY;
     strcoilY.label        = 'Y';
     coilarray = [coilarray;strcoilY];
 
     strcoilZ.Pwire       = PwireZ;
+    strcoilZ.Pwire(:, 3) = strcoilZ.Pwire(:, 3) - min(strcoilZ.Pwire(:, 3));
     strcoilZ.Ewire       = EwireZ;
     strcoilZ.Swire       = SwireZ;
     strcoilZ.P           = PZ;
+    strcoilZ.P(:, 3)     = strcoilZ.P(:, 3) - min(strcoilZ.P(:, 3));
     strcoilZ.t           = tZ;
     strcoilZ.label        = 'Z';
     coilarray = [coilarray;strcoilZ];

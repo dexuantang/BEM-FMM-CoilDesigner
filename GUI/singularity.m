@@ -1,29 +1,6 @@
-% function [pairs, data] = singularity(strcoil, points, data, threshold)
-%     % Find points that are too close to the coil wires
-%     % Inputs:
-%     %   strcoil - coil object
-%     %   points - n x 3 matrix of points
-%     %   data - field data
-%     %   threshold - distance threshold
-%     % Output:
-%     %   pairs - p x 2 matrix where each row is [index, distance]
-%     %   data - field data
-% 
-%     % Compute pairwise distances between points in the coil and points
-%     distances = pdist2(points, strcoil.Pwire, 'euclidean');
-% 
-%     % Find indices where distances are below the threshold
-%     [pointIndices, wireIndices] = find(distances < threshold);
-% 
-%     % Create pairs array
-%     pairs = [pointIndices, wireIndices, distances(sub2ind(size(distances), pointIndices, wireIndices))];
-% 
-%     % Set field to zero for points within the threshold
-%     data(unique(pointIndices), :) = 0;
-% end
-
 function [pairs, data] = singularity(strcoil, points, data, threshold)
-    % Find points that are too close to the coil wires
+    % Find points that are too close to the coil wires and assign them
+    % the field data from nearby non-singularity points
     % Inputs:
     %   strcoil - coil object
     %   points - n x 3 matrix of points
@@ -32,11 +9,11 @@ function [pairs, data] = singularity(strcoil, points, data, threshold)
     % Output:
     %   pairs - p x 3 matrix where each row is [index, wireIndex, distance]
     %   data - field data
-
+    
     % Initialize pairs array
     pairs = [];
 
-    % Define the size of each batch (e.g., 1000 points per batch)
+    % Define the size of each batch (e.g., 20000 points per batch)
     batchSize = 20000;
     numBatches = ceil(size(points, 1) / batchSize);
 
@@ -58,8 +35,19 @@ function [pairs, data] = singularity(strcoil, points, data, threshold)
         batchPairs = [startIndex + pointIndices - 1, wireIndices, relevantDistances];
         pairs = [pairs; batchPairs];
 
-        % Set field data to zero where necessary
-        data(unique(startIndex + pointIndices - 1), :) = 0;
+        % Find nearby non-singular points for replacement
+        singularIndices = unique(startIndex + pointIndices - 1);
+        
+        for i = 1:length(singularIndices)
+            singularPointIndex = singularIndices(i);
+
+            % Find the nearest non-singular point
+            validIndices = setdiff(1:size(points, 1), singularIndices);  % Exclude singular points
+            nearestPointIndex = knnsearch(points(validIndices, :), points(singularPointIndex, :), 'K', 1);
+            nearestPointIndex = validIndices(nearestPointIndex);
+
+            % Set the field data of the singular point to the nearby valid point
+            data(singularPointIndex, :) = data(nearestPointIndex, :);
+        end
     end
 end
-

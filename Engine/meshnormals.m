@@ -1,4 +1,4 @@
-function unitnormals = meshnormals(P, t);
+function unitnormals = meshnormals(P, t)
 %   SYNTAX
 %   unitnormals = meshnormals(P, t)
 %   DESCRIPTION
@@ -7,7 +7,6 @@ function unitnormals = meshnormals(P, t);
 %   Inputs:
 %   P - Vertex array of the mesh (N x 3)
 %   t - Facets of the mesh (N x 3)
-
 
 vert1 = P(t(:, 1),:);
 vert2 = P(t(:, 2),:);

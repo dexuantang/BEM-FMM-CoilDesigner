@@ -35,9 +35,7 @@ function E = fmm_electric_field_multi(coilgroup, points, mu0, ygrids, xgrids, zg
     A(:,:,:,1) = permute(Ax,[2 1 3]);
     A(:,:,:,2) = permute(Ay,[2 1 3]);
     A(:,:,:,3) = permute(Az,[2 1 3]);
-    
+    toc
     niftiwrite(A, 'MagneticVectorPotential.nii');
     % disp('MagneticVectorPotential.nii saved');
-    % figure;
-    % quiver3(X, Y, Z, Ax, Ay, Az, 'Color', 'blue');
 end

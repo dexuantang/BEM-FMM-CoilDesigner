@@ -1,4 +1,4 @@
-function [] = display_plane(parent, x, y, z, axes, layer)
+function Title = display_plane(parent, x, y, z, axes, layer)
     % Retrieve existing patches from the UserData of parent
     userData = get(parent, 'UserData');
     if ~isempty(userData) && isfield(userData, 'patches')
@@ -18,7 +18,8 @@ function [] = display_plane(parent, x, y, z, axes, layer)
             zmin = z(1);
             zmax = z(end);
             p = patch(parent, [xmin xmin xmax xmax], [Y Y Y Y], [zmin zmax zmax zmin], 'c', 'FaceAlpha', 0.25);
-            title(parent,['Y = ', num2str(Y), ' m']);
+            Title = ['Y = ', num2str(Y), ' m'];
+            title(parent, Title);
         case 'X'
             X = x(layer);
             ymin = y(1);
@@ -26,7 +27,8 @@ function [] = display_plane(parent, x, y, z, axes, layer)
             zmin = z(1);
             zmax = z(end);
             p = patch(parent, [X X X X], [ymin ymin ymax ymax], [zmin zmax zmax zmin], 'c', 'FaceAlpha', 0.25);
-            title(parent,['X = ', num2str(X), ' m']);
+            Title = ['X = ', num2str(X), ' m'];
+            title(parent, Title);
         case 'Z'
             Z = z(layer);
             xmin = x(1);
@@ -34,7 +36,8 @@ function [] = display_plane(parent, x, y, z, axes, layer)
             ymin = y(1);
             ymax = y(end);
             p = patch(parent, [xmin xmin xmax xmax], [ymin ymax ymax ymin], [Z Z Z Z], 'c', 'FaceAlpha', 0.25);
-            title(parent,['Z = ', num2str(Z), ' m']);
+            Title = ['Z = ', num2str(Z), ' m'];
+            title(parent, Title);
     end
     
     % Add new patch to the new_patches array

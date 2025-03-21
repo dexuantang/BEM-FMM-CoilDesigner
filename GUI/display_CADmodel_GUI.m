@@ -8,14 +8,6 @@ function [ ] = display_CADmodel_GUI(parent, P, t, ind, alpha, beta, transparency
         label = [];
     end
 
-    % Check and set OpenGL to hardware. Speeds up plotting but may cause
-    % compatibility issues in the future
-    try
-        opengl hardware;
-    catch
-        warning('Hardware OpenGL is not available. Falling back to software OpenGL.');
-        opengl software;
-    end
 
     set(parent, 'Color', 'White');
     p = patch(parent, 'vertices', P, 'faces', t, 'EdgeColor', 'none', ...
@@ -27,8 +19,11 @@ function [ ] = display_CADmodel_GUI(parent, P, t, ind, alpha, beta, transparency
     end
     axis(parent, 'equal');
     axis(parent, 'tight'); 
-    lightangle(parent, alpha, beta);
-    lighting(parent, 'gouraud');
+    existingLights = findall(parent, 'Type', 'light');
+    if isempty(existingLights)
+        lightangle(parent, alpha, beta);
+        lighting(parent, 'gouraud');
+    end
     set(parent, 'fontsize', 20)
     xlabel(parent, 'X (m)');
     ylabel(parent, 'Y (m)');

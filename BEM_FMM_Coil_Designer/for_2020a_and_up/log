@@ -1,0 +1,84 @@
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\Engine
+> In path (line 109)
+  In addpath (line 86)
+  In coil_designer/startupFcn (line 274)
+  In appdesigner.internal.service/AppManagementService/tryCallback (line 347)
+  In appdesigner.internal.service.AppManagementService>@(~,~)obj.tryCallback(app,startupFcn,false,[]) (line 156)
+  In matlab.apps.internal/GraphicsCallbackProxy/runCallbackFunction (line 23)
+  In appdesigner.internal.service/AppManagementService/runStartupFcn (line 157)
+  In matlab.apps/AppBase/runStartupFcn (line 41)
+  In coil_designer (line 2050)
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\temp
+> In path (line 109)
+  In addpath (line 86)
+  In coil_designer/startupFcn (line 275)
+  In appdesigner.internal.service/AppManagementService/tryCallback (line 347)
+  In appdesigner.internal.service.AppManagementService>@(~,~)obj.tryCallback(app,startupFcn,false,[]) (line 156)
+  In matlab.apps.internal/GraphicsCallbackProxy/runCallbackFunction (line 23)
+  In appdesigner.internal.service/AppManagementService/runStartupFcn (line 157)
+  In matlab.apps/AppBase/runStartupFcn (line 41)
+  In coil_designer (line 2050)
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\GUI
+> In path (line 109)
+  In addpath (line 86)
+  In coil_designer/startupFcn (line 276)
+  In appdesigner.internal.service/AppManagementService/tryCallback (line 347)
+  In appdesigner.internal.service.AppManagementService>@(~,~)obj.tryCallback(app,startupFcn,false,[]) (line 156)
+  In matlab.apps.internal/GraphicsCallbackProxy/runCallbackFunction (line 23)
+  In appdesigner.internal.service/AppManagementService/runStartupFcn (line 157)
+  In matlab.apps/AppBase/runStartupFcn (line 41)
+  In coil_designer (line 2050)
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\CoilPresets
+> In path (line 109)
+  In addpath (line 86)
+  In coil_designer/startupFcn (line 277)
+  In appdesigner.internal.service/AppManagementService/tryCallback (line 347)
+  In appdesigner.internal.service.AppManagementService>@(~,~)obj.tryCallback(app,startupFcn,false,[]) (line 156)
+  In matlab.apps.internal/GraphicsCallbackProxy/runCallbackFunction (line 23)
+  In appdesigner.internal.service/AppManagementService/runStartupFcn (line 157)
+  In matlab.apps/AppBase/runStartupFcn (line 41)
+  In coil_designer (line 2050)
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\CoilPresets\Alternative_Mesh_Engine
+> In path (line 109)
+  In addpath (line 86)
+  In coil_designer/startupFcn (line 278)
+  In appdesigner.internal.service/AppManagementService/tryCallback (line 347)
+  In appdesigner.internal.service.AppManagementService>@(~,~)obj.tryCallback(app,startupFcn,false,[]) (line 156)
+  In matlab.apps.internal/GraphicsCallbackProxy/runCallbackFunction (line 23)
+  In appdesigner.internal.service/AppManagementService/runStartupFcn (line 157)
+  In matlab.apps/AppBase/runStartupFcn (line 41)
+  In coil_designer (line 2050)
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\Engine
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\GUI
+Warning: Name is nonexistent or not a directory: C:\Users\dtang2\Documents\Coil_Designer_GUI_Nightly\Coil_Designer_GUI_Nightly\BEM_FMM_Coil_Designer\for_redistribution_files_only\CenterlineExtraction
+Dot indexing is not supported for variables of this type.
+
+Error in curvatureflowlaplace (line 15)
+
+Error in Extraction_GUI (line 12)
+
+Error in centerline_extractor/PreviewSendtoCoilDesignerButtonPushed (line 69)
+
+Error in appdesigner.internal.service.AppManagementService/tryCallback (line 344)
+
+Error in matlab.apps.AppBase>@(source,event)tryCallback(appdesigner.internal.service.AppManagementService.instance(),app,callback,requiresEventData,event) (line 35)
+
+Error using matlab.ui.control.internal.controller.ComponentController/executeUserCallback (line 382)
+Error while evaluating Button PrivateButtonPushedFcn.
+
+
+MainLoopParallelTime =
+
+   17.6951
+
+iter=1, relres=2.304e-02, locres=8.949e-02, time=0.770764
+iter=2, relres=1.188e-03, locres=4.615e-03, time=1.06763
+iter=3, relres=8.998e-05, locres=3.495e-04, time=1.34434
+iter=4, relres=2.280e-05, locres=8.855e-05, time=1.63217
+iter=5, relres=8.056e-07, locres=3.129e-06, time=1.91254
+Elapsed time is 0.337520 seconds.
+
+error_tang_vs_normal =
+
+    0.0028
+
